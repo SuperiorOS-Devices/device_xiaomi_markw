@@ -253,7 +253,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Device-specific settings
 PRODUCT_PACKAGES += \
-    XiaomiShit
+    XiaomiShit \
+    XiaomiParts
 
 # DRM
 PRODUCT_PACKAGES += \
