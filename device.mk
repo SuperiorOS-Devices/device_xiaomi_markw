@@ -260,6 +260,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    XiaomiDoze
+
 # Face detection extension
 PRODUCT_PACKAGES += \
     org.codeaurora.camera
