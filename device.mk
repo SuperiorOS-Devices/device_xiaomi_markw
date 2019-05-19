@@ -333,7 +333,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
 	init.spectrum.rc \
     init.target.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.safailnet.rc
 
 # Keylayout
 PRODUCT_COPY_FILES += \
