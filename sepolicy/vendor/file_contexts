@@ -39,3 +39,5 @@
 /sys/devices/soc/qpnp-flash-led-24/leds/led:torch_0/max_brightness          u:object_r:sysfs_torch:s0
 /sys/devices/soc/qpnp-flash-led-24/leds/led:torch_1/max_brightness          u:object_r:sysfs_torch:s0
 
+# Sound Control
+/sys/kernel/sound_control(/.*)?              u:object_r:sysfs_sound_control:s0

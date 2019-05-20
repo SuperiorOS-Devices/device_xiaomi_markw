@@ -550,10 +550,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
-# XiaomiParts
+# Extra Features
 PRODUCT_PACKAGES += \
-    XiaomiParts
+    XiaomiParts \
+    GoogleCamera
 
 # Inherit proprietary files
 $(call inherit-product-if-exists, vendor/xiaomi/markw/markw-vendor.mk)
 $(call inherit-product, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
+
