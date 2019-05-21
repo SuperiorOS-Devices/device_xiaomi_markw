@@ -41,3 +41,6 @@
 
 # Sound Control
 /sys/kernel/sound_control(/.*)?              u:object_r:sysfs_sound_control:s0
+
+# Charging Limiter
+/sys/kernel/charger_limiter/charging_limit		u:object_r:charging_limiter_sysfs:s0

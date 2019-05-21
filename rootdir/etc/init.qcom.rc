@@ -127,6 +127,9 @@ on boot
     chown root system /sys/devices/virtual/timed_output/vibrator/vtg_level
     chmod 0660 /sys/devices/virtual/timed_output/vibrator/vtg_level
     
+    # USB Fastcharge
+    chown system system /sys/kernel/fast_charge/force_fast_charge
+    chmod 0660 /sys/kernel/fast_charge/force_fast_charge
 
     chown system system /proc/touchpanel/capacitive_keys_disable
     chmod 0666 /proc/touchpanel/capacitive_keys_disable
@@ -295,6 +298,10 @@ on boot
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_min
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_val
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_invert_obsolete
+
+    # Charging limiter
+    chown system system /sys/kernel/charger_limiter/charging_limit
+    chmod 0660 /sys/kernel/charger_limiter/charging_limit
 
 # msm specific files that need to be created on /data
 on post-fs-data

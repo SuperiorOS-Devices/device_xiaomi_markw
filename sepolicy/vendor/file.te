@@ -31,3 +31,6 @@ type sysfs_kcal, fs_type, sysfs_type;
 
 # Sound Control
 type sysfs_sound_control, fs_type, sysfs_type;
+
+# XiaomiParts charging limiter
+type charging_limiter_sysfs, fs_type, sysfs_type;

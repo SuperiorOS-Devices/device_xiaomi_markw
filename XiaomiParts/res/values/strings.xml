@@ -60,4 +60,13 @@
     <string name="headphone_gain">Headphone gain</string>
     <string name="speaker_gain">Speaker gain</string>
     <string name="mic_gain">Microphone gain</string>
+
+    <!-- Charging Limiter -->
+    <string name="battery_charging_limiter_title">Battery</string>
+    <string name="battery_charging_limiter_desc">Set limit to stop battery charging</string>
+
+    <!-- USB Fast Charge toggle -->
+    <string name="usb_fastcharge_title">USB Fastcharge</string>
+    <string name="fastcharge_title">Enable USB Fastcharge</string>
+    <string name="fastcharge_summary">Use fastcharge when connected to a computer via USB port</string>
 </resources>
