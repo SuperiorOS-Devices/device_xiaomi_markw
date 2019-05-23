@@ -7,6 +7,7 @@
 /sys/devices/soc/soc:fpc1020(/.*)?		u:object_r:fpc_sysfs:s0
 
 # Goodix Fingerprint
+<<<<<<< HEAD
 /(vendor|system/vendor)/bin/gx_fpd		u:object_r:gx_fpd_exec:s0
 /dev/goodix_fp					u:object_r:gx_fpd_device:s0
 /data/gf_data(/.*)?				u:object_r:gx_fpd_data_file:s0
@@ -20,6 +21,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.xiaomi_markw		u:object_r:hal_fingerprint_markw_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.0-service\.xiaomi_markw					u:object_r:hal_ir_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.xiaomi_markw				u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service         u:object_r:hal_power_default_exec:s0
 
 # Kcal
 /sys/devices/platform/kcal_ctrl.0(/.*)?              u:object_r:sysfs_kcal:s0
