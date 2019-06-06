@@ -51,4 +51,30 @@
             android:persistent="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/sound_title">
+        <PreferenceScreen
+            android:key="sound_control"
+            android:fragment="com.lineageos.settings.device.sound.SoundControlSettings"
+            android:summary="@string/sound_control_summary"
+            android:title="@string/sound_control_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/battery_charging_limiter_title">
+        <com.lineageos.settings.device.BatteryChargingLimiterPreference
+            android:key="battery_charging_limite"
+            android:title="@string/battery_charging_limiter_desc" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="usb_fastcharge"
+        android:title="@string/usb_fastcharge_title" >
+        <SwitchPreference
+            android:key="fastcharge"
+            android:defaultValue="false"
+            android:title="@string/fastcharge_title"
+            android:summary="@string/fastcharge_summary" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

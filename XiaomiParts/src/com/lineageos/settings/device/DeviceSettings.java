@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v14.preference.PreferenceFragment;
+import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceClickListener;
@@ -41,6 +42,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.util.Log;
 
+import com.lineageos.settings.device.sound.SoundControlActivity;
+
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -48,23 +51,41 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String KEY_YELLOW_TORCH_BRIGHTNESS = "yellow_torch_brightness";
     public static final String KEY_WHITE_TORCH_BRIGHTNESS = "white_torch_brightness";
     public static final String KEY_GLOVE_MODE = "glove_mode";
+    public static final String KEY_BATTERY_CHARGING_LIMITER = "battery_charging_limiter";
+    public static final String USB_FASTCHARGE_KEY = "fastcharge";
+    public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
 
     private VibratorStrengthPreference mVibratorStrength;
     private YellowTorchBrightnessPreference mYellowTorchBrightness;
     private WhiteTorchBrightnessPreference mWhiteTorchBrightness;
     private TwoStatePreference mGloveMode;
+    private BatteryChargingLimiterPreference mBatteryChargingLimiter;
+    private SwitchPreference mFastcharge;
+    private PreferenceCategory mUsbFastcharge;
 
     private static final String GLOVE_MODE_FILE = "/sys/devices/virtual/tp_glove/device/glove_enable";
+    private static final String KEY_CATEGORY_USB_FASTCHARGE = "usb_fastcharge";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.main, rootKey);
 
+        PreferenceScreen prefSet = getPreferenceScreen();
         PreferenceScreen mKcalPref = (PreferenceScreen) findPreference("kcal");
         mKcalPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
              @Override
              public boolean onPreferenceClick(Preference preference) {
                  Intent intent = new Intent(getActivity().getApplicationContext(), DisplayCalibration.class);
+                 startActivity(intent);
+                 return true;
+             }
+        });
+
+        PreferenceScreen mSoundControlPref = (PreferenceScreen) findPreference("sound_control");
+        mSoundControlPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+             @Override
+             public boolean onPreferenceClick(Preference preference) {
+                 Intent intent = new Intent(getActivity().getApplicationContext(), SoundControlActivity.class);
                  startActivity(intent);
                  return true;
              }
@@ -88,6 +109,23 @@ public class DeviceSettings extends PreferenceFragment implements
         mGloveMode = (TwoStatePreference) findPreference(KEY_GLOVE_MODE);
         mGloveMode.setChecked(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(DeviceSettings.KEY_GLOVE_MODE, false));
         mGloveMode.setOnPreferenceChangeListener(this);
+
+        mBatteryChargingLimiter = (BatteryChargingLimiterPreference) findPreference(KEY_BATTERY_CHARGING_LIMITER);
+        if (mBatteryChargingLimiter != null) {
+            mBatteryChargingLimiter.setEnabled(BatteryChargingLimiterPreference.isSupported());
+        }
+
+        if (Utils.fileWritable(USB_FASTCHARGE_PATH)) {
+          mFastcharge = (SwitchPreference) findPreference(USB_FASTCHARGE_KEY);
+          mFastcharge.setChecked(Utils.getFileValueAsBoolean(USB_FASTCHARGE_PATH, false));
+          mFastcharge.setOnPreferenceChangeListener(this);
+        } else {
+          mUsbFastcharge = (PreferenceCategory) prefSet.findPreference("usb_fastcharge");
+          prefSet.removePreference(mUsbFastcharge);
+        }
+    }
+    private void setFastcharge(boolean value) {
+            Utils.writeValue(USB_FASTCHARGE_PATH, value ? "1" : "0");
     }
 
     public static void restore(Context context) {
@@ -107,7 +145,16 @@ public class DeviceSettings extends PreferenceFragment implements
             SharedPreferences.Editor prefChange = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
             prefChange.putBoolean(KEY_GLOVE_MODE, enabled).commit();
             Utils.writeValue(GLOVE_MODE_FILE, enabled ? "1" : "0");
-        }
         return true;
+        } else if (preference == mFastcharge) {
+            boolean value = (Boolean) newValue;
+            mFastcharge.setChecked(value);
+            setFastcharge(value);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            editor.putBoolean(USB_FASTCHARGE_KEY, value);
+            editor.commit();
+            return true;
     }
+	return false;
+}
 }

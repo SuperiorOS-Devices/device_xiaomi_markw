@@ -52,4 +52,21 @@
     <string name="extreme_amoled">Extreme Amoled</string>
     <string name="warm_amoled">Warm Amoled</string>
     <string name="hybrid_mamba">Hybrid Mamba</string>
+
+    <!-- Sound Control -->
+    <string name="sound_title">Sound</string>
+    <string name="sound_control_title">Sound control</string>
+    <string name="sound_control_summary">Setup headphones, speaker and microphone gains</string>
+    <string name="headphone_gain">Headphone gain</string>
+    <string name="speaker_gain">Speaker gain</string>
+    <string name="mic_gain">Microphone gain</string>
+
+    <!-- Charging Limiter -->
+    <string name="battery_charging_limiter_title">Battery</string>
+    <string name="battery_charging_limiter_desc">Set limit to stop battery charging</string>
+
+    <!-- USB Fast Charge toggle -->
+    <string name="usb_fastcharge_title">USB Fastcharge</string>
+    <string name="fastcharge_title">Enable USB Fastcharge</string>
+    <string name="fastcharge_summary">Use fastcharge when connected to a computer via USB port</string>
 </resources>
