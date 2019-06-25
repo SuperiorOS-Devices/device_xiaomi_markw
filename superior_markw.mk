@@ -39,6 +39,12 @@ PRODUCT_MODEL := Redmi 4 Prime
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
+# Higher fling velocities
+# for smoother scrolling and better responsiveness
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.min.fling_velocity=160 \
+ro.max.fling_velocity=20000
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="markw-user 6.0.1 MMB29M V10.2.1.0.MBEMIXM release-keys" \
     TARGET_DEVICE="markw"

@@ -16,14 +16,6 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>android.hardware.nfc</name>
-        <version>1.0</version>
-        <interface>
-            <name>INfc</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
         <name>android.hardware.radio</name>
         <version>1.0-2</version>
         <interface>
@@ -74,14 +66,6 @@
         <version>1.0</version>
         <interface>
             <name>ISupplicant</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>com.qualcomm.qti.ant</name>
-        <version>1.0</version>
-        <interface>
-            <name>IAntHci</name>
             <instance>default</instance>
         </interface>
     </hal>
