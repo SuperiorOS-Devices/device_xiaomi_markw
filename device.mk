@@ -123,16 +123,8 @@ PRODUCT_PACKAGES += \
 
 #Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.primary.msm8953 \
-    audio_amplifier.msm8953 \
-    audio.r_submix.default \
-    audio.usb.default \
-    libqcompostprocbundle \
     libaudio-resampler \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libqcomvoiceprocessingdescriptors \
+    libaudioroute \
     tinycap \
     tinyplay \
     tinypcminfo \
@@ -212,8 +204,6 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8953 \
-    libmm-qcamera \
     Snap
 
 PRODUCT_PACKAGES += \
@@ -252,11 +242,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=440
 
 # DRM
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.1-service.clearkey
-
-#    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.1-service.clearkey \
+    android.hardware.drm@1.0-impl 
 
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -363,12 +352,7 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_PACKAGES += \
-    libstagefright_soft_flacdec \
-    libOmxAacEnc:32 \
-    libOmxAmrEnc:32 \
-    libOmxEvrcEnc:32 \
-    libOmxG711Enc:32 \
-    libOmxQcelp13Enc:32  
+    libstagefright_soft_flacdec  
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
