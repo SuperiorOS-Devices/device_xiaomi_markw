@@ -104,7 +104,13 @@ PRODUCT_COPY_FILES += \
 
 # ADB Debug
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.adb.secure=0
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1 \
+    persist.logd.logpersistd=logcatd \
+    persist.service.adb.enable=1 \
+    persist.sys.usb.config=adb \
+    ro.logd.size.stats=16M
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
@@ -127,7 +133,9 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcomvoiceprocessingdescriptors \
-    libwebrtc_audio_preprocessing \
+    tinycap \
+    tinyplay \
+    tinypcminfo \
     tinymix
 
 PRODUCT_PACKAGES += \
@@ -199,7 +207,7 @@ PRODUCT_PACKAGES += \
     android.hardware.automotive.vehicle@2.0-manager-lib
 
 # Bluetooth
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     libbt-vendor
 
 # Camera
@@ -226,14 +234,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm8953 \
-    gralloc.msm8953 \
-    hwcomposer.msm8953 \
-    memtrack.msm8953 \
-    libqdMetaData \
-    libqdMetaData.system \
-    libdisplayconfig \
-    libhwc2on1adapter \
     liboverlay \
     libgenlock \
     libtinyxml
@@ -253,9 +253,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.1-service.clearkey
+
+#    android.hardware.drm@1.0-impl \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -317,6 +318,7 @@ PRODUCT_PACKAGES += \
     init.goodix.sh \
     init.qti.fm.sh \
     init.qti.ims.sh \
+    init.qcom.factory.rc \
     fstab.qcom \
     init.msm.usb.configfs.rc \
     init.qti.fm.rc \
@@ -361,19 +363,12 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libextmedia_jni \
-    libmm-omxcore \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxCore \
-    libOmxEvrcEnc \
-    libOmxG711Enc \
-    libOmxQcelp13Enc \
-    libOmxVdec \
-    libOmxVenc \
-    libstagefrighthw \
-    libstagefright_soft_flacdec
+    libstagefright_soft_flacdec \
+    libOmxAacEnc:32 \
+    libOmxAmrEnc:32 \
+    libOmxEvrcEnc:32 \
+    libOmxG711Enc:32 \
+    libOmxQcelp13Enc:32  
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -387,11 +382,9 @@ PRODUCT_COPY_FILES += \
 
 # Media Extensions
 PRODUCT_PACKAGES += \
-    libavenhancements \
     libavmediaserviceextensions \
     libmediametrics \
     libregistermsext \
-    libhypv_intercept \
     mediametrics
 
 # NET
@@ -442,10 +435,11 @@ PRODUCT_PACKAGES += \
     android.hardware.radio@1.2 \
     android.hardware.radio.config@1.0 \
     android.hardware.secure_element@1.0 \
-    librmnetctl \
+    libxml2 \
     libprotobuf-cpp-full \
-    libprotobuf-cpp-full-rtti \
-    libxml2
+    libprotobuf-cpp-full-rtti
+    
+#    librmnetctl \
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -517,6 +511,9 @@ PRODUCT_PACKAGES += \
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
+    android.hardware.wifi@1.0 \
+    android.hardware.wifi@1.1 \
+    android.hardware.wifi@1.2 \
     hostapd \
     hostapd_cli \
     ipacm \
