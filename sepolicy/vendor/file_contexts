@@ -20,10 +20,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.xiaomi_markw		u:object_r:hal_fingerprint_markw_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.0-service\.xiaomi_markw					u:object_r:hal_ir_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.xiaomi_markw				u:object_r:hal_light_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service         u:object_r:hal_power_default_exec:s0
-
-# Kcal
-/sys/devices/platform/kcal_ctrl.0(/.*)?              u:object_r:sysfs_kcal:s0
+#/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service         u:object_r:hal_power_default_exec:s0
 
 # Kcal
 /sys/devices/platform/kcal_ctrl.0(/.*)?              u:object_r:sysfs_kcal:s0
@@ -48,7 +45,4 @@
 
 # Charging Limiter
 /sys/kernel/charger_limiter/charging_limit		u:object_r:charging_limiter_sysfs:s0
-
-# Lineage LiveDisplay
-/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.xiaomi_markw              u:object_r:hal_lineage_livedisplay_qti_exec:s0
 
